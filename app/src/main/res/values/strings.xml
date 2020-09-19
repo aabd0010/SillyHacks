@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">WhatASillyLife</string>
     <string name="starting_button">Let\'s The Silly Begins!</string>
+    <string name="check_box1">Fun</string>
+    <string name="check_box2">Knowledge</string>
+    <string name="check_box3">Creative</string>
+    <string name="textView"><![CDATA[Hackers: Ammar,Afif,Murhid & You]]></string>
+    <string name="imageView">TODO</string>
+    <string name="imageView2">TODO</string>
+    <string name="imageView3">TODO</string>
+    <string name="question">ammar hensem</string>
+    <string name="hint">Hint :</string>
+    <string name="answer">Answer</string>
+    <string name="surrender">Spare My Life</string>
+    <string name="submit">Submit</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="quit">quit?</string>
 </resources>
