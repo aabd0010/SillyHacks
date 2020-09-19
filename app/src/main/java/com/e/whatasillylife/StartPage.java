@@ -26,7 +26,7 @@ public class StartPage extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StartPage.this)
-                        .navigate(R.id.testFlow);
+                        .navigate(R.id.startPage_loadingPage);
             }
         });
     }

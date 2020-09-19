@@ -11,8 +11,8 @@
         android:label="start_page"
         tools:layout="@layout/start_page" >
         <action
-            android:id="@+id/testFlow"
-            app:destination="@id/mainPage" />
+            android:id="@+id/startPage_loadingPage"
+            app:destination="@id/loadingPage" />
     </fragment>
     <fragment
         android:id="@+id/mainPage"
@@ -32,4 +32,9 @@
             android:id="@+id/outputPage_mainPage"
             app:destination="@id/mainPage" />
     </fragment>
+    <activity
+        android:id="@+id/loadingPage"
+        android:name="com.e.whatasillylife.LoadingPage"
+        android:label="loading_page"
+        tools:layout="@layout/loading_page" />
 </navigation>
