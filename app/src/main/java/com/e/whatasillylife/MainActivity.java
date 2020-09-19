@@ -5,12 +5,15 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,7 +28,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.e.whatasillylife.R.layout.start_page;
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setVideo(VideoView video) {
+        String videoPath = "andriod.resourse://" + getPackageName() + "/" + R.raw.openingvideo;
+        Uri uri = Uri.parse(videoPath);
+        video.setVideoURI(uri);
+
+        MediaController mediaController = new MediaController(this);
+        video.setMediaController(mediaController);
+        mediaController.setAnchorView(video);
     }
 
     public void retrieveData(String userAnswer) {
