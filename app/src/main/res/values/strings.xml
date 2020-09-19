@@ -18,4 +18,5 @@
     <string name="answer">Your Answer</string>
     <string name="play_again">Click me again !!!</string>
     <string name="ans_comment">Katara : Where is the moon? At the cake</string>
+    <string name="your_answer_text">Your answer will be display here</string>
 </resources>

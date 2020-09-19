@@ -1,7 +1,9 @@
 package com.e.whatasillylife;
-import android.os.Bundle;
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.os.Bundle;
 import android.util.Log;
 
 import android.view.Menu;
@@ -39,14 +41,17 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+    public void retrieveData(String userAnswer){
+        OutputPage fragobj =new OutputPage();
+        fragobj.setAns(userAnswer);
+    }
+
     public String apiFunction(int code, String query) {
         String URL = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=1";
         RequestQueue requestQueue = Volley.newRequestQueue(this);

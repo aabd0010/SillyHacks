@@ -1,11 +1,11 @@
 package com.e.whatasillylife;
-
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,12 +34,17 @@ public class MainPage extends Fragment {
         id = getRandomNumber();
         super.onViewCreated(view, savedInstanceState);
 //        String question = ((MainActivity) getActivity()).apiFunction(1, "1");
-
+        final View ansView = view;
         view.findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText userText= ansView.findViewById(R.id.answer);
+                String user_answer=userText.getText().toString();
+                ((MainActivity) getActivity()).retrieveData(user_answer);
+
                 NavHostFragment.findNavController(MainPage.this)
                         .navigate(R.id.mainPage_outputPage);
+
             }
         });
     }
