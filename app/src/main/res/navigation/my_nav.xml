@@ -12,7 +12,7 @@
         tools:layout="@layout/start_page" >
         <action
             android:id="@+id/startPage_loadingPage"
-            app:destination="@id/loadingPage" />
+            app:destination="@id/mainPage" />
     </fragment>
     <fragment
         android:id="@+id/mainPage"

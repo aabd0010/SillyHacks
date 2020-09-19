@@ -5,7 +5,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.os.Bundle;
 
-
 public class LoadingPage extends AppCompatActivity {
 
     ProgressBar progressBar;

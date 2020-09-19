@@ -1,11 +1,19 @@
 package com.e.whatasillylife;
-import android.os.Bundle;
+
+import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.MediaController;
+import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,9 +22,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import static com.e.whatasillylife.R.layout.start_page;
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +54,35 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-    public String apiFunction(int code, String query) {
-        String URL = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=1";
+
+    public void setVideo(VideoView video) {
+        String videoPath = "andriod.resourse://" + getPackageName() + "/" + R.raw.openingvideo;
+        Uri uri = Uri.parse(videoPath);
+        video.setVideoURI(uri);
+
+        MediaController mediaController = new MediaController(this);
+        video.setMediaController(mediaController);
+        mediaController.setAnchorView(video);
+    }
+
+    public void retrieveData(String userAnswer) {
+        OutputPage fragobj = new OutputPage();
+        fragobj.setAns(userAnswer);
+    }
+
+    public void apiFunction(final int code, String query, final TextView t) {
+        String URL = "";
+        if (code == 1 || code == 2) {
+            URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=" + query;
+        } else if (code == 3 || code == 4 || code == 5) {
+            URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
+        }
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -57,17 +91,35 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("response", response.toString());
+//                        Log.d("code", Integer.toString(code));
+//                        Log.e("response", response.toString());
+                        try {
+                            String output = "";
+                            if (code == 1) {
+                                output = response.getString("queDesc");
+                            } else if (code == 2) {
+                                output = response.getString("queHint");
+                            } else if (code == 3) {
+                                output = response.getString("ansDesc");
+                            } else if (code == 4) {
+                                output = response.getString("ansImage");
+                            } else if (code == 5) {
+                                output = response.getString("queComment");
+                            }
+                            t.append(output);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
-                new Response.ErrorListener(){
+                new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error){
+                    public void onErrorResponse(VolleyError error) {
                         Log.e("error", error.toString());
                     }
                 }
         );
         requestQueue.add(objectRequest);
-        return "";
     }
 }
