@@ -3,16 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/mainPage"
-    tools:ignore="UnusedNavigation">
-
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.e.whatasillylife.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
-    <activity
+    tools:ignore="UnusedNavigation"
+    app:startDestination="@id/startPage">
+    <fragment
+        android:id="@+id/startPage"
+        android:name="com.e.whatasillylife.StartPage"
+        android:label="start_page"
+        tools:layout="@layout/start_page" />
+    <fragment
         android:id="@+id/mainPage"
         android:name="com.e.whatasillylife.MainPage"
-        android:label="main_page" />
+        android:label="main_page"
+        tools:layout="@layout/main_page" />
+    <fragment
+        android:id="@+id/outputPage"
+        android:name="com.e.whatasillylife.OutputPage"
+        android:label="output_page"
+        tools:layout="@layout/output_page" />
 </navigation>

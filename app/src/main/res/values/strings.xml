@@ -2,6 +2,7 @@
     <string name="app_name">WhatASillyLife</string>
     <string name="starting_button">Let\'s The Silly Begins!</string>
     <string name="check_box1">Fun</string>
+    <string name="action_settings">Settings</string>
     <string name="check_box2">Knowledge</string>
     <string name="check_box3">Creative</string>
     <string name="textView"><![CDATA[Hackers: Ammar,Afif,Murhid & You]]></string>
