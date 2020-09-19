@@ -67,7 +67,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/starting_button"
         app:layout_constraintEnd_toEndOf="@+id/starting_button"
         app:layout_constraintStart_toStartOf="@+id/starting_button"
-        app:layout_constraintTop_toTopOf="@+id/starting_button" />
+        app:layout_constraintTop_toTopOf="@+id/starting_button"
+        app:layout_constraintVertical_bias="0.499" />
 
     <TextView
         android:id="@+id/textView"
@@ -76,12 +77,14 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         android:text="@string/textView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/starting_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/opening_video"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="NotSibling" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -98,16 +101,28 @@
         app:srcCompat="@drawable/github" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="73dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="270dp"
-        android:layout_marginTop="100dp"
-        android:contentDescription="@string/imageView3"
+        android:id="@+id/sillyhacks"
+        android:layout_width="74dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="125dp"
+        android:src="@drawable/sillyhacks"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBox3"
         app:layout_constraintTop_toBottomOf="@+id/starting_button"
-        app:srcCompat="@drawable/hackers" />
+        android:contentDescription="@string/sillyhacks" />
+
+    <ImageView
+        android:id="@+id/aws"
+        android:layout_width="81dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="175dp"
+        android:contentDescription="@string/aws"
+        android:src="@drawable/aws"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sillyhacks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

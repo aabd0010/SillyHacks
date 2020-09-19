@@ -1,11 +1,17 @@
 package com.e.whatasillylife;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
+import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -19,9 +25,12 @@ public class StartPage extends Fragment {
         return inflater.inflate(R.layout.start_page, container, false);
     }
 
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        VideoView openingVideo = view.findViewById(R.id.opening_video);
+        ((MainActivity) getActivity()).setVideo(openingVideo);
         view.findViewById(R.id.starting_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,4 +39,5 @@ public class StartPage extends Fragment {
             }
         });
     }
+
 }

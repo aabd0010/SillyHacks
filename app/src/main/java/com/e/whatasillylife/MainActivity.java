@@ -4,7 +4,11 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.StrictMode;
+import android.net.Uri;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -14,8 +18,10 @@ import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.MediaController;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +39,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import static com.e.whatasillylife.R.layout.start_page;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +70,16 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setVideo(VideoView video) {
+        String videoPath = "andriod.resourse://" + getPackageName() + "/" + R.raw.openingvideo;
+        Uri uri = Uri.parse(videoPath);
+        video.setVideoURI(uri);
+
+        MediaController mediaController = new MediaController(this);
+        video.setMediaController(mediaController);
+        mediaController.setAnchorView(video);
     }
 
     public void retrieveData(String userAnswer) {
@@ -102,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
         if (code == 1 || code == 2) {
             URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=" + query;
         } else if (code == 3 || code == 4 || code == 5) {
-            Log.e("stuck", query);
-            URL = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
+            URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
         }
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(
@@ -113,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+//                        Log.d("code", Integer.toString(code));
+//                        Log.e("response", response.toString());
                         try {
                             String output = "";
                             if (code == 1) {
@@ -124,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                             } else if (code == 4) {
                                 output = response.getString("ansImage");
                             } else if (code == 5) {
-                                output = response.getString("ansComment");
+                                output = response.getString("queComment");
                             }
                             t.append(output);
 
