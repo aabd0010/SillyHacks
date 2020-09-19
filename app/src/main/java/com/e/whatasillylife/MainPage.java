@@ -33,6 +33,7 @@ public class MainPage extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        Log.e("response", "hehe");
         id = getRandomNumber();
         super.onViewCreated(view, savedInstanceState);
         TextView que = view.findViewById(R.id.question);

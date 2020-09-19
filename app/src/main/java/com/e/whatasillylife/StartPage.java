@@ -1,17 +1,12 @@
 package com.e.whatasillylife;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.MediaController;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -35,7 +30,7 @@ public class StartPage extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StartPage.this)
-                        .navigate(R.id.startPage_loadingPage);
+                        .navigate(R.id.startPage_mainPage);
             }
         });
     }

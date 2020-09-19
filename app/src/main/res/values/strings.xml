@@ -20,11 +20,11 @@
     <string name="your_answer_text">Your answer will be display here</string>
     <string name="playeranswer">Your answer :</string>
     <string name="real_answer">The answer is :</string>
-    <string name="textView4">Heyy, my name is Silly</string>
+    <string name="textView4"/>
     <string name="estimated_age">I think you are :</string>
     <string name="textView6">TextView</string>
     <string name="comment_label">Comments :</string>
-    <string name="ans_comment">Katara : Where is the moon? At the cake</string>
+    <string name="ans_comment"/>
     <string name="button_answer">Reveal Your Secret</string>
     <string name="avatar">TODO</string>
     <string name="sillyhacks">TODO</string>

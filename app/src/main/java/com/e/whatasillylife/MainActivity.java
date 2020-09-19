@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void apiFunction(final int code, String query, final TextView t) {
+        Log.e("response", "hehe");
         String URL = "";
         if (code == 1 || code == 2) {
             URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=" + query;

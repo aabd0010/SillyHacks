@@ -132,12 +132,11 @@
         android:layout_marginTop="22dp"
         android:layout_marginEnd="285dp"
         android:layout_marginBottom="135dp"
+        android:contentDescription="@string/avatar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment_label"
-        app:srcCompat="@drawable/maxresdefault__4_"
-        android:contentDescription="@string/avatar" />
+        app:layout_constraintTop_toBottomOf="@+id/comment_label" />
 
     <TextView
         android:id="@+id/ans_comment"

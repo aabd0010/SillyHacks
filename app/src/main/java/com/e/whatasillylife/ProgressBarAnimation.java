@@ -38,7 +38,7 @@ public class ProgressBarAnimation extends Animation {
 
         //To connect to the main page after finish loading the page
         if (value == 101){
-            context.startActivity(new Intent(context, LinkmainpageActivity.class));
+            context.startActivity(new Intent(context, MainActivity.class));
             }
         }
     }
