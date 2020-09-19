@@ -39,12 +39,13 @@ public class MainPage extends Fragment {
         ((MainActivity) getActivity()).apiFunction(1, id, que);
         ((MainActivity) getActivity()).apiFunction(2, id, hint);
         final View ansView = view;
+
         view.findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText userText= ansView.findViewById(R.id.answer);
-                String user_answer=userText.getText().toString();
-                ((MainActivity) getActivity()).retrieveData(user_answer);
+//                EditText userText= ansView.findViewById(R.id.answer);
+//                String user_answer=userText.getText().toString();
+//                ((MainActivity) getActivity()).retrieveData(user_answer);
 
                 NavHostFragment.findNavController(MainPage.this)
                         .navigate(R.id.mainPage_outputPage);

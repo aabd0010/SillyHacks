@@ -5,11 +5,16 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -23,6 +28,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,12 +69,41 @@ public class MainActivity extends AppCompatActivity {
         fragobj.setAns(userAnswer);
     }
 
+    public void apiImage(String query, final ImageView img) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        String API = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, API, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String output = response.getString("ansImage");
+                            Bitmap bitmap = BitmapFactory.decodeStream((InputStream) new URL(output).getContent());
+                            img.setImageBitmap(bitmap);
+                        } catch (JSONException | IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("error", error.toString());
+                    }
+                }
+        );
+        requestQueue.add(objectRequest);
+    }
+
     public void apiFunction(final int code, String query, final TextView t) {
         String URL = "";
         if (code == 1 || code == 2) {
             URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=" + query;
         } else if (code == 3 || code == 4 || code == 5) {
-            URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
+            Log.e("stuck", query);
+            URL = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
         }
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(
@@ -75,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-//                        Log.d("code", Integer.toString(code));
-//                        Log.e("response", response.toString());
                         try {
                             String output = "";
                             if (code == 1) {
@@ -88,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                             } else if (code == 4) {
                                 output = response.getString("ansImage");
                             } else if (code == 5) {
-                                output = response.getString("queComment");
+                                output = response.getString("ansComment");
                             }
                             t.append(output);
 

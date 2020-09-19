@@ -9,12 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class OutputPage extends Fragment {
 
-    String answer;
-
+    public String id, answer;
+    public String getRandomNumber() {
+        int x = (int) (Math.random() * ((18 - 1) + 1)) + 1;
+        id = Integer.toString(x);
+        return id;
+    }
     public OutputPage(){
 
     }
@@ -32,7 +37,15 @@ public class OutputPage extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        id = getRandomNumber();
         super.onViewCreated(view, savedInstanceState);
+        TextView dbAnswer = view.findViewById(R.id.textView4);
+        ImageView avatar = view.findViewById(R.id.avatar);
+        TextView dbComment = view.findViewById(R.id.ans_comment);
+
+        ((MainActivity) getActivity()).apiFunction(3, id, dbAnswer);
+        ((MainActivity) getActivity()).apiImage(id, avatar);
+        ((MainActivity) getActivity()).apiFunction(5, id, dbComment);
         view.findViewById(R.id.restart_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
