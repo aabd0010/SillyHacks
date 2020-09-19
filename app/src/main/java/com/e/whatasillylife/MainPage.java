@@ -16,7 +16,7 @@ public class MainPage extends Fragment {
     public String id;
 
     public String getRandomNumber() {
-        int x = (int) (Math.random() * ((20 - 1) + 1)) + 1;
+        int x = (int) (Math.random() * ((18 - 1) + 1)) + 1;
         id = Integer.toString(x);
         return id;
     }
@@ -32,8 +32,12 @@ public class MainPage extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         id = getRandomNumber();
+        Log.e("response", id);
         super.onViewCreated(view, savedInstanceState);
-//        String question = ((MainActivity) getActivity()).apiFunction(1, "1");
+        TextView que = view.findViewById(R.id.question);
+        TextView hint = view.findViewById(R.id.hint);
+        ((MainActivity) getActivity()).apiFunction(1, id, que);
+        ((MainActivity) getActivity()).apiFunction(2, id, hint);
         final View ansView = view;
         view.findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
