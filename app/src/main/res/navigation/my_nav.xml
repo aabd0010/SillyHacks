@@ -9,11 +9,7 @@
         android:id="@+id/startPage"
         android:name="com.e.whatasillylife.StartPage"
         android:label="start_page"
-        tools:layout="@layout/start_page" >
-        <action
-            android:id="@+id/startPage_loadingPage"
-            app:destination="@id/mainPage" />
-    </fragment>
+        tools:layout="@layout/start_page" />
     <fragment
         android:id="@+id/mainPage"
         android:name="com.e.whatasillylife.MainPage"
