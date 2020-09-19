@@ -7,11 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
 import com.google.gson.Gson;
 
 public class MainPage extends Fragment {
@@ -35,12 +33,7 @@ public class MainPage extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         id = getRandomNumber();
         super.onViewCreated(view, savedInstanceState);
-        String question = ((MainActivity) getActivity()).apiFunction(1, "1");
-//
-//        Gson gson = new Gson();
-//        String json = gson.toJson(question);
-//        TextView t = view.findViewById(R.id.question);
-//        t.setText(question);
+//        String question = ((MainActivity) getActivity()).apiFunction(1, "1");
 
         view.findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override

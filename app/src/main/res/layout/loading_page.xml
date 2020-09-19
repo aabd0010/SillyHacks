@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding = "16dp"
     android:background="@drawable/backgroundloading"
-    tools:context="com.e.whatasillylife.MainActivity">
+    tools:context="com.e.whatasillylife.LoadingPage">
 
 
     <ProgressBar
