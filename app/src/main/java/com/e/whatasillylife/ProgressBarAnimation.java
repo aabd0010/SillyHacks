@@ -1,6 +1,7 @@
 package com.e.whatasillylife;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,17 +26,25 @@ public class ProgressBarAnimation extends Animation {
         this.to = to;
     }
 
-
+    //To show progress bar transformation
     @Override
-
     protected void applyTransformation(float interpolatedTime, Transformation t) {
         super.applyTransformation(interpolatedTime, t);
         float value = from + (to - from) * interpolatedTime;
         progressBar.setProgress((int) value);
-        String percent = Integer.toString((int) value);
-        textView.setText(percent + " % ");
+        //String percent = Integer.toString((int) value);
+        //textView.setText(percent + " % ");
+        textView.setText((int)value + " % ");
+
+        //To connect to the main page after finish loading the page
+        if (value == 101){
+            context.startActivity(new Intent(context, LinkmainpageActivity.class));
+            }
+        }
     }
 
 
-}
+
+
+
 
