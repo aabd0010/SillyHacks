@@ -54,19 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answer" />
 
-    <TextView
-        android:id="@+id/quit"
-        android:layout_width="86dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="250dp"
-        android:layout_marginBottom="100dp"
-        android:text="@string/quit"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/question"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/submit"
         android:layout_width="113dp"
@@ -79,8 +66,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/search_button"
-        android:layout_width="54dp"
-        android:layout_height="49dp"
+        android:layout_width="61dp"
+        android:layout_height="55dp"
         android:layout_marginStart="275dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="650dp"
@@ -91,5 +78,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_search" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginBottom="75dp"
+        android:contentDescription="@string/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
