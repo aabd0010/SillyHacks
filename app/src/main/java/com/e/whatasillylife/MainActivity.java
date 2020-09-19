@@ -4,7 +4,10 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.StrictMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.MediaController;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -22,16 +26,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static com.e.whatasillylife.R.layout.start_page;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +80,34 @@ public class MainActivity extends AppCompatActivity {
     public void retrieveData(String userAnswer) {
         OutputPage fragobj = new OutputPage();
         fragobj.setAns(userAnswer);
+    }
+
+    public void apiImage(String query, final ImageView img) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        String API = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, API, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String output = response.getString("ansImage");
+                            Bitmap bitmap = BitmapFactory.decodeStream((InputStream) new URL(output).getContent());
+                            img.setImageBitmap(bitmap);
+                        } catch (JSONException | IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("error", error.toString());
+                    }
+                }
+        );
+        requestQueue.add(objectRequest);
     }
 
     public void apiFunction(final int code, String query, final TextView t) {

@@ -9,7 +9,8 @@
     <string name="imageView">TODO</string>
     <string name="imageView2">TODO</string>
     <string name="imageView3">TODO</string>
-    <string name="question"></string>
+    <string name="question" />
+    <string name="hint">Hint :</string>
     <string name="surrender">Spare My Life</string>
     <string name="submit">Submit</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -26,7 +27,6 @@
     <string name="ans_comment">Katara : Where is the moon? At the cake</string>
     <string name="button_answer">Reveal Your Secret</string>
     <string name="avatar">TODO</string>
-    <string name="hint">"Hint :  "</string>
     <string name="sillyhacks">TODO</string>
     <string name="aws">TODO</string>
 </resources>
