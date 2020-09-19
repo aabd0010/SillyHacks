@@ -25,8 +25,8 @@ public class StartPage extends Fragment {
         view.findViewById(R.id.starting_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                NavHostFragment.findNavController(StartPage.this)
-//                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                NavHostFragment.findNavController(StartPage.this)
+                        .navigate(R.id.testFlow);
             }
         });
     }

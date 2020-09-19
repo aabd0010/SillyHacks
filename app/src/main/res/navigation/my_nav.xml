@@ -9,15 +9,27 @@
         android:id="@+id/startPage"
         android:name="com.e.whatasillylife.StartPage"
         android:label="start_page"
-        tools:layout="@layout/start_page" />
+        tools:layout="@layout/start_page" >
+        <action
+            android:id="@+id/testFlow"
+            app:destination="@id/mainPage" />
+    </fragment>
     <fragment
         android:id="@+id/mainPage"
         android:name="com.e.whatasillylife.MainPage"
         android:label="main_page"
-        tools:layout="@layout/main_page" />
+        tools:layout="@layout/main_page" >
+        <action
+            android:id="@+id/mainPage_outputPage"
+            app:destination="@id/outputPage" />
+    </fragment>
     <fragment
         android:id="@+id/outputPage"
         android:name="com.e.whatasillylife.OutputPage"
         android:label="output_page"
-        tools:layout="@layout/output_page" />
+        tools:layout="@layout/output_page" >
+        <action
+            android:id="@+id/outputPage_mainPage"
+            app:destination="@id/mainPage" />
+    </fragment>
 </navigation>
