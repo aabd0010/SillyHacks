@@ -15,7 +15,7 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="254dp"
         android:layout_marginBottom="660dp"
-        android:text="Your answer : "
+        android:text="@string/playeranswer"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="256dp"
         android:layout_marginBottom="532dp"
-        android:text="The answer is :"
+        android:text="@string/real_answer"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="408dp"
-        android:text="Heyy, my name is Silly"
+        android:text="@string/textView4"
         android:background="@drawable/rectangle_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="368dp"
-        android:text="I think you are :"
+        android:text="@string/estimated_age"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="173dp"
         android:layout_marginBottom="339dp"
-        android:text="TextView"
+        android:text="@string/textView6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="306dp"
         android:layout_marginBottom="235dp"
-        android:text="Comments :"
+        android:text="@string/comment_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comment_label"
-        app:srcCompat="@drawable/maxresdefault__4_" />
+        app:srcCompat="@drawable/maxresdefault__4_"
+        android:contentDescription="@string/avatar" />
 
     <TextView
         android:id="@+id/ans_comment"
@@ -146,7 +147,7 @@
         android:layout_marginTop="75dp"
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="150dp"
-        android:text="Katara : Where is the moon? At the cake"
+        android:text="@string/ans_comment"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,4 +168,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar" />
+
+    <Button
+        android:id="@+id/button_answer"
+        android:layout_width="128dp"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:text="@string/button_answer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/restart_button"
+        app:layout_constraintTop_toBottomOf="@+id/ans_comment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
