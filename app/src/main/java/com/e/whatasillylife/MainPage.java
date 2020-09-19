@@ -1,4 +1,6 @@
 package com.e.whatasillylife;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +18,7 @@ public class MainPage extends Fragment {
     public String id;
 
     public String getRandomNumber() {
-        int x = (int) (Math.random() * ((18 - 1) + 1)) + 1;
+        int x = (int) (Math.random() * ((20 - 1) + 1)) + 1;
         id = Integer.toString(x);
         return id;
     }
@@ -32,7 +34,6 @@ public class MainPage extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         id = getRandomNumber();
-        Log.e("response", id);
         super.onViewCreated(view, savedInstanceState);
         TextView que = view.findViewById(R.id.question);
         TextView hint = view.findViewById(R.id.hint);
@@ -48,9 +49,7 @@ public class MainPage extends Fragment {
 
                 NavHostFragment.findNavController(MainPage.this)
                         .navigate(R.id.mainPage_outputPage);
-
             }
         });
     }
 }
-
