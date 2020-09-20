@@ -22,6 +22,9 @@
         <action
             android:id="@+id/mainPage_outputPage"
             app:destination="@id/outputPage" />
+        <action
+            android:id="@+id/mainPageSelf"
+            app:destination="@id/mainPage" />
     </fragment>
     <fragment
         android:id="@+id/outputPage"
@@ -31,6 +34,9 @@
         <action
             android:id="@+id/outputPage_mainPage"
             app:destination="@id/mainPage" />
+        <action
+            android:id="@+id/outputPageSelf"
+            app:destination="@id/outputPage" />
     </fragment>
     <activity
         android:id="@+id/loadingPage"

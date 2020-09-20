@@ -1,12 +1,8 @@
 package com.e.whatasillylife;
-
-import android.content.Intent;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.StrictMode;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,19 +27,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-
-import static com.e.whatasillylife.R.layout.start_page;
 
 public class MainActivity extends AppCompatActivity {
-
+    TextView test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        test = findViewById(R.id.your_answer_text);
         setSupportActionBar(toolbar);
     }
 
@@ -60,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -77,14 +71,16 @@ public class MainActivity extends AppCompatActivity {
         mediaController.setAnchorView(video);
     }
 
-    public void retrieveData(String userAnswer) {
-        OutputPage fragobj = new OutputPage();
-        fragobj.setAns(userAnswer);
-    }
+//    public void retrieveData(String userAnswer) {
+//        OutputPage fragobj = new OutputPage();
+//        fragobj.setAns(userAnswer);
+//          test.setText(userAnswer);
+//    }
 
     public void apiImage(String query, final ImageView img) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        Log.e("error", query);
         String API = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, API, null,
@@ -111,13 +107,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void apiFunction(final int code, String query, final TextView t) {
-        Log.e("response", "hehe");
         String URL = "";
         if (code == 1 || code == 2) {
             URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=" + query;
         } else if (code == 3 || code == 4 || code == 5) {
-            URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
+            URL = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
         }
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -126,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-//                        Log.d("code", Integer.toString(code));
-//                        Log.e("response", response.toString());
                         try {
                             String output = "";
                             if (code == 1) {
@@ -135,13 +129,13 @@ public class MainActivity extends AppCompatActivity {
                             } else if (code == 2) {
                                 output = response.getString("queHint");
                             } else if (code == 3) {
+                                Log.e("amos", "BUGS");
                                 output = response.getString("ansDesc");
-                            } else if (code == 4) {
-                                output = response.getString("ansImage");
-                            } else if (code == 5) {
-                                output = response.getString("queComment");
                             }
-                            t.append(output);
+                            else if (code == 5) {
+                                output = response.getString("ansComment");
+                            }
+                            t.setText(output);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

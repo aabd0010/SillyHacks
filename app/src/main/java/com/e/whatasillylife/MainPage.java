@@ -1,9 +1,5 @@
 package com.e.whatasillylife;
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import com.google.gson.Gson;
 
 public class MainPage extends Fragment {
     public String id;
@@ -33,7 +28,6 @@ public class MainPage extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        Log.e("response", "hehe");
         id = getRandomNumber();
         super.onViewCreated(view, savedInstanceState);
         TextView que = view.findViewById(R.id.question);
@@ -41,14 +35,19 @@ public class MainPage extends Fragment {
         ((MainActivity) getActivity()).apiFunction(1, id, que);
         ((MainActivity) getActivity()).apiFunction(2, id, hint);
         final View ansView = view;
-
+        view.findViewById(R.id.surrender).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(MainPage.this)
+                        .navigate(R.id.mainPageSelf);
+            }
+        });
         view.findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                EditText userText= ansView.findViewById(R.id.answer);
+                EditText userText= ansView.findViewById(R.id.answer);
 //                String user_answer=userText.getText().toString();
 //                ((MainActivity) getActivity()).retrieveData(user_answer);
-
                 NavHostFragment.findNavController(MainPage.this)
                         .navigate(R.id.mainPage_outputPage);
             }
