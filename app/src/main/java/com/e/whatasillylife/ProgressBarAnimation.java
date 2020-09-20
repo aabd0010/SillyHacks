@@ -6,9 +6,7 @@ import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import android.view.animation.Transformation;
-
 
 public class ProgressBarAnimation extends Animation {
 
@@ -34,14 +32,14 @@ public class ProgressBarAnimation extends Animation {
         progressBar.setProgress((int) value);
         //String percent = Integer.toString((int) value);
         //textView.setText(percent + " % ");
-        textView.setText((int)value + " % ");
+        textView.setText((int) value + " % ");
 
         //To connect to the main page after finish loading the page
-        if (value == 101){
+        if (value == 101) {
             context.startActivity(new Intent(context, MainActivity.class));
-            }
         }
     }
+}
 
 
 

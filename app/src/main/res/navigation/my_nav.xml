@@ -25,6 +25,9 @@
         <action
             android:id="@+id/mainPageSelf"
             app:destination="@id/mainPage" />
+        <action
+            android:id="@+id/mainPage_startPage"
+            app:destination="@id/startPage" />
     </fragment>
     <fragment
         android:id="@+id/outputPage"

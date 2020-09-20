@@ -20,7 +20,6 @@ public class StartPage extends Fragment {
         return inflater.inflate(R.layout.start_page, container, false);
     }
 
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 

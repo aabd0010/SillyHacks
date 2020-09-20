@@ -7,36 +7,32 @@ import android.os.StrictMode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.MediaController;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
+import com.google.android.material.snackbar.Snackbar;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    TextView test;
+    public String answer = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        test = findViewById(R.id.your_answer_text);
         setSupportActionBar(toolbar);
     }
 
@@ -56,7 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Sorry, you can't change your destiny ", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return true;
+                }
+            });
         }
         return super.onOptionsItemSelected(item);
     }
@@ -71,11 +74,12 @@ public class MainActivity extends AppCompatActivity {
         mediaController.setAnchorView(video);
     }
 
-//    public void retrieveData(String userAnswer) {
-//        OutputPage fragobj = new OutputPage();
-//        fragobj.setAns(userAnswer);
-//          test.setText(userAnswer);
-//    }
+    public void retrieveData(String userAnswer) {
+          this.answer = userAnswer;
+    }
+    public String getAnswer(){
+        return answer;
+    }
 
     public void apiOutput(String query,final TextView ans, final ImageView img, final TextView comment) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             que.setText(response.getString("queDesc"));
-                            hint.setText(response.getString("queHint"));
+                            hint.append(" " + response.getString("queHint"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
