@@ -48,9 +48,7 @@ public class OutputPage extends Fragment {
         TextView dbComment = view.findViewById(R.id.ans_comment);
         RatingBar star = view.findViewById(R.id.ratingBar);
         star.setRating(rate);
-        ((MainActivity) getActivity()).apiFunction(3, id, dbAnswer);
-        ((MainActivity) getActivity()).apiImage(id, avatar);
-        ((MainActivity) getActivity()).apiFunction(5, id, dbComment);
+        ((MainActivity) getActivity()).apiOutput(id, dbAnswer, avatar, dbComment);
 //        TextView answerBox = view.findViewById(R.id.your_answer_text);
 //        ((MainActivity) getActivity()).setUser(answerBox);
         view.findViewById(R.id.restart_button).setOnClickListener(new View.OnClickListener() {
@@ -63,7 +61,6 @@ public class OutputPage extends Fragment {
         view.findViewById(R.id.button_answer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("userAns", answer);
 //                TextView answerBox = view.findViewById(R.id.your_answer_text);
 //                answerBox.setText(answer);
                 NavHostFragment.findNavController(OutputPage.this)

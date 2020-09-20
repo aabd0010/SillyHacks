@@ -32,8 +32,7 @@ public class MainPage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView que = view.findViewById(R.id.question);
         TextView hint = view.findViewById(R.id.hint);
-        ((MainActivity) getActivity()).apiFunction(1, id, que);
-        ((MainActivity) getActivity()).apiFunction(2, id, hint);
+        ((MainActivity) getActivity()).apiFunction(id, que, hint);
         final View ansView = view;
         view.findViewById(R.id.surrender).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 //          test.setText(userAnswer);
 //    }
 
-    public void apiImage(String query, final ImageView img) {
+    public void apiOutput(String query,final TextView ans, final ImageView img, final TextView comment) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Log.e("error", query);
@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                             String output = response.getString("ansImage");
                             Bitmap bitmap = BitmapFactory.decodeStream((InputStream) new URL(output).getContent());
                             img.setImageBitmap(bitmap);
+                            ans.setText(response.getString("ansDesc"));
+                            comment.setText(response.getString("ansComment"));
                         } catch (JSONException | IOException e) {
                             e.printStackTrace();
                         }
@@ -106,14 +108,8 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(objectRequest);
     }
 
-    public void apiFunction(final int code, String query, final TextView t) {
-        String URL = "";
-        if (code == 1 || code == 2) {
-            URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=" + query;
-        } else if (code == 3 || code == 4 || code == 5) {
-            URL = "https://grx8xhhk0b.execute-api.ap-southeast-2.amazonaws.com/default/answer-get?ansID=" + query;
-        }
-
+    public void apiFunction(String query, final TextView que, final TextView hint) {
+        String URL = "https://7j0m82yzrg.execute-api.ap-southeast-2.amazonaws.com/default/question-get?queID=" + query;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -123,20 +119,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String output = "";
-                            if (code == 1) {
-                                output = response.getString("queDesc");
-                            } else if (code == 2) {
-                                output = response.getString("queHint");
-                            } else if (code == 3) {
-                                Log.e("amos", "BUGS");
-                                output = response.getString("ansDesc");
-                            }
-                            else if (code == 5) {
-                                output = response.getString("ansComment");
-                            }
-                            t.setText(output);
-
+                            que.setText(response.getString("queDesc"));
+                            hint.setText(response.getString("queHint"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
